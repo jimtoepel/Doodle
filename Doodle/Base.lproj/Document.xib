@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document">
             <connections>
+                <outlet property="taskTable" destination="M8D-YX-Lga" id="Pqs-sJ-SAk"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -22,10 +23,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TzO-uX-F71">
-                        <rect key="frame" x="14" y="13" width="105" height="32"/>
-                        <buttonCell key="cell" type="push" title="Enter Task" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W3H-dL-jpx">
+                        <rect key="frame" x="14" y="13" width="97" height="32"/>
+                        <buttonCell key="cell" type="push" title="Add Task" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W3H-dL-jpx">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="addTask:" target="-2" id="9gh-TY-Wry"/>
+                            </connections>
                         </buttonCell>
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="j6p-np-jRd">
@@ -74,6 +78,9 @@
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-2" id="UcN-yh-zPp"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
