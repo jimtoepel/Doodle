@@ -61,7 +61,48 @@
 
 -(void) addTask:(id)sender
 {
-    NSLog(@"Add Task button clicked!");
+    //if there is no array yet, add one
+    if (!self.tasks) {
+        self.tasks = [NSMutableArray array];
+    }
+    
+    [self.tasks addObject:@"New Item"];
+    
+    // reloadData tells the table view to refresh and ask its dataSource
+    // (which happens to be this BNR Doucment object)
+    [self.taskTable reloadData];
+    
+    // updateChangeCount: tells the app whether or not the document has unsaved changes, NSChangeDone flags the document as unsaved
+    [self updateChangeCount:NSChangeDone];
 }
+
+
+# pragma mark - Data Source Methods
+
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tv
+{
+    // This table view displays the tasks array, so the number of entires in the table view will == the number of entries in the array
+    
+    return [self.tasks count];
+}
+
+-(id)tableView:(NSTableView *)tableView
+    objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    // Return the items from tasks that correspond with the cell that the table view wants to display
+    return [self.tasks objectAtIndex:row];
+}
+
+-(void)tableView:(NSTableView *)tableview
+setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    // when the user changes a task on the table view, update the tasks array
+    
+    [self.tasks replaceObjectAtIndex:row withObject:object];
+    
+    // and then flag the document as having unsaved changes
+    [self updateChangeCount:NSChangeDone];
+}
+
 
 @end
